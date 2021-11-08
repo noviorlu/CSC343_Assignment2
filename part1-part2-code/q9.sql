@@ -6,9 +6,9 @@ SET SEARCH_PATH TO Recommender;
 -- Do this for each of the views that define your intermediate steps.    
 -- (But give them better names!) The IF EXISTS avoids generating an error   
 -- the first time this file is imported.  
-  
+
 -- Define views for your intermediate steps here:  
-  
+
 -- Your SQL code that performs the necessary insertions goes here:  
 INSERT INTO Item  VALUES ((SELECT MAX(IID) FROM ITEM) + 1, 'Housewares', 'Company logo mug', 0);  
   
@@ -17,7 +17,8 @@ INSERT INTO LineItem(
     FROM(  
         SELECT *, row_number() over (partition by cid order by d) AS ranking  
         FROM Purchase  
-        WHERE d >= NOW() - interval '1 day'  
+        WHERE d > TIMESTAMP 'yesterday'
+        AND d <  TIMESTAMP 'today'
     ) AS t1  
     WHERE ranking = 1  
 ); 

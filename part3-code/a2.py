@@ -18,7 +18,7 @@ from ratings import RatingsTable
 class Recommender:
     """A simple recommender that can work with data conforming to the schema in
     schema.sql.
-
+    
     === Instance Attributes ===
     dbConnection: Connection to a database of online purchases and product
         recommendations.
@@ -61,7 +61,7 @@ class Recommender:
         >>> rec = Recommender()
         >>> # This example will make sense if you change the arguments as
         >>> # appropriate for you.
-        >>> rec.connect_db("csc343h-dianeh", "dianeh", "")
+        >>> rec.connect_db("csc343h-cheny811", "cheny811", "")
         True
         >>> rec.disconnect_db()
         True
@@ -94,8 +94,24 @@ class Recommender:
         - k > 0
         """
         try:
-            # TODO: Complete this method.
-            pass
+            print('Generic recom')
+            cursor = self.db_conn.cursor()
+            cursor.execute("""
+                SELECT IID
+                FROM(
+                    SELECT IID, rank() over (order by (SUM(rating)/COUNT(*)) DESC, iid) AS ranking
+                    FROM Review
+                    WHERE IID IN (SELECT IID FROM PopularItems)
+                    GROUP BY IID
+                )AS t1
+                WHERE ranking <= %s::int
+            """, (k,))
+            
+            gen = []
+            for row in cursor:
+                print(f'generic: {row[0]}')
+                gen.append(row[0])
+            return gen
         except pg.Error:
             return None
 
@@ -104,11 +120,12 @@ class Recommender:
         with customer ID cust.
 
         Choose the recommendations as follows:
-        - Find the curator whose whose ratings of the 2 most-sold items in
+        - Find the curator whose ratings of the 2 most-sold items in
           each category (according to PopularItems) are most similar to the
           customer’s own ratings on these same items.
           HINT: Fill a RatingsTable with the appropriate information and call
           function find_similar_curator.
+          
         - Recommend products that this curator has rated highest. Include
           up to k items, and only items that cust has not bought.
 
@@ -139,6 +156,46 @@ class Recommender:
         """
         try:
             # TODO: Complete this method.
+            cursor = self.db_conn.cursor()
+
+            cursor.execute("SELECT COUNT(*) FROM(SELECT DISTINCT CID FROM Review)AS t1")
+            rater = cursor.fetchone()[0]
+            cursor.execute("SELECT COUNT(*) FROM(SELECT DISTINCT IID FROM Review)AS t1")
+            item = cursor.fetchone()[0]
+
+            print(f'ratetable size {rater}, {item}')
+
+            rateTable = RatingsTable(rater, item)
+            cursor.execute("SELECT CID, IID, rating FROM Review")
+            for row in cursor:
+                print(f'insert rate {row[0]}, {row[1]}, {row[2]}')
+                rateTable.set_rating(row[0], row[1], row[2])
+            
+
+            curatorList = []
+            cursor.execute("SELECT * FROM Curator")
+            for row in cursor:
+                curatorList.append(row[0])
+                if rateTable.get_all_ratings(row[0]) is not None:
+                    print(f'{row[0]} exist in ratetable')
+
+            
+            if rateTable.get_all_ratings(cust) is None:
+                self.recommend_generic(k)
+            else:
+                curator = find_similar_curator(rateTable, curatorList, cust)
+                print(f'Curator is {curator}')
+                cursor.execute("""
+                    SELECT IID, rank() over (order by rating DESC, iid) AS ranking
+                    FROM DefinitiveRatings
+                    WHERE CID = %s::int
+                """, (curator,))
+                gen = []
+                for row in cursor:
+                    print(f'recom: {row[0]}, {row[1]}')
+                    if row[1] <= k:
+                        gen.append(row[0])
+                return gen
             pass
         except pg.Error:
             return None
@@ -159,10 +216,31 @@ class Recommender:
         """
         try:
             # TODO: Complete this method.
-            pass
+            cursor = self.db_conn.cursor()
+            cursor.execute("""
+                DELETE FROM PopularItems;
+                DELETE FROM DefinitiveRatings;
+                INSERT INTO PopularItems(
+                    SELECT IID FROM(
+                    SELECT IID, category, sum, rank() over (partition by category order by sum DESC) AS ranking
+                    FROM(
+                        SELECT Item.IID, category, SUM(quantity)
+                        FROM Purchase JOIN LineItem ON Purchase.PID = LineItem.PID
+                        JOIN Item ON LineItem.IID = Item.IID
+                        GROUP BY Item.IID
+                    )AS t1)AS t2 WHERE ranking <= 2
+                );
+                INSERT INTO DefinitiveRatings(
+                    SELECT Curator.CID, IID, rating FROM Curator JOIN Review ON Curator.CID = Review.CID
+                    WHERE IID IN(
+                        SELECT IID FROM PopularItems
+                    )
+                );
+            """)
+            return 0
         except pg.Error:
             return -1
-
+    
 
 # NB: This is defined outside of the class, so it is a function rather than
 # a method.
@@ -211,10 +289,19 @@ def find_similar_curator(ratings: RatingsTable,
 def sample_testing_function() -> None:
     rec = Recommender()
     # TODO: Change this to connect to your own database:
-    rec.connect_db("csc343h-dianeh", "dianeh", "")
+    rec.connect_db("csc343h-cheny811", "cheny811", "")
     # TODO: Test one or more methods here.
-
-
+    
+    #TEST for repopulate
+    # n = rec.repopulate()
+    # print(n)
+    # rec.db_conn.commit()
+    
+    rec.repopulate()
+    rec.db_conn.commit()
+    #test for recommend_generic
+    gen = rec.recommend(3, 2)
+    
 if __name__ == '__main__':
     # TODO: Put your testing code here, or call testing functions such as
     # this one:

@@ -14,8 +14,6 @@ CREATE TABLE q3 (
 -- (But give them better names!) The IF EXISTS avoids generating an error 
 -- the first time this file is imported.
 DROP VIEW IF EXISTS alreadyDone CASCADE;
-DROP VIEW IF EXISTS shouldHaveDone CASCADE;
-DROP VIEW IF EXISTS didNotInclude CASCADE;
 DROP VIEW IF EXISTS result CASCADE;
 
 -- Define views for your intermediate steps here:
@@ -38,5 +36,5 @@ HAVING count(IID) = (
 
 -- Your query that answers the question goes below the "insert into" line:
 insert into q3(CID, categoryName)
-SELECT CID, category
+SELECT DISTINCT CID, category
 FROM result;
