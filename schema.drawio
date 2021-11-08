@@ -1,0 +1,249 @@
+<mxfile host="65bd71144e">
+    <diagram id="Ks142zg4lt9CwBusJtRZ" name="Page-1">
+        <mxGraphModel dx="1032" dy="1436" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="ITEM" style="swimlane;" parent="1" vertex="1">
+                    <mxGeometry x="586" y="20" width="404" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="&lt;b&gt;IID&lt;/b&gt; INT(primary)" style="rounded=0;whiteSpace=wrap;html=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="30" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;b&gt;category&lt;/b&gt; TEXT(NOT NULL)" style="rounded=0;whiteSpace=wrap;html=1;" parent="3" vertex="1">
+                    <mxGeometry x="150" y="30" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;b&gt;description&lt;/b&gt; TEXT(NOT NULL)" style="rounded=0;whiteSpace=wrap;html=1;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="70" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;b&gt;price &lt;/b&gt;FLOAT(NOT NULL)" style="rounded=0;whiteSpace=wrap;html=1;" parent="3" vertex="1">
+                    <mxGeometry x="190" y="70" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="Comments" style="swimlane;" parent="3" vertex="1" collapsed="1">
+                    <mxGeometry x="10" y="110" width="90" height="23" as="geometry">
+                        <mxRectangle x="-230" y="420" width="420" height="80" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="31" value="&lt;div&gt;-- An item for sale.&lt;/div&gt;&lt;div&gt;-- IID is the item's ID, category describes the kind of item it is, description&lt;/div&gt;&lt;div&gt;-- gives further details about the item, and price is its current price.&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" parent="77" vertex="1">
+                    <mxGeometry x="5" y="30" width="400" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Customer" style="swimlane;" parent="1" vertex="1">
+                    <mxGeometry x="570" y="240" width="420" height="140" as="geometry">
+                        <mxRectangle x="260" y="340" width="90" height="23" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" value="&lt;b&gt;CID &lt;/b&gt;INT(primary)" style="rounded=0;whiteSpace=wrap;html=1;" parent="10" vertex="1">
+                    <mxGeometry x="10" y="30" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="&lt;b&gt;email &lt;/b&gt;TEXT" style="rounded=0;whiteSpace=wrap;html=1;" parent="10" vertex="1">
+                    <mxGeometry x="140" y="30" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="&lt;b&gt;lastName &lt;/b&gt;TEXT(NOT NULL)" style="rounded=0;whiteSpace=wrap;html=1;" parent="10" vertex="1">
+                    <mxGeometry x="240" y="30" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="&lt;b&gt;firstName &lt;/b&gt;TEXT(NOT NULL)" style="rounded=0;whiteSpace=wrap;html=1;" parent="10" vertex="1">
+                    <mxGeometry x="210" y="70" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&lt;b&gt;title &lt;/b&gt;TEXT(DEFAULT 'Customer')" style="rounded=0;whiteSpace=wrap;html=1;" parent="10" vertex="1">
+                    <mxGeometry x="10" y="70" width="190" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="16" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1345" y="210"/>
+                            <mxPoint x="780" y="210"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" value="Purchase" style="swimlane;startSize=23;" parent="1" vertex="1">
+                    <mxGeometry x="1160" y="50" width="370" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="&lt;b&gt;PID&amp;nbsp;&lt;/b&gt;INT(primary)" style="rounded=0;whiteSpace=wrap;html=1;" parent="16" vertex="1">
+                    <mxGeometry x="10" y="30" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="&lt;b&gt;d &lt;/b&gt;TIMESTAMP(NOT NULL)" style="rounded=0;whiteSpace=wrap;html=1;" parent="16" vertex="1">
+                    <mxGeometry x="10" y="70" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="&lt;b&gt;cNumber &lt;/b&gt;INT(NOT NULL)" style="rounded=0;whiteSpace=wrap;html=1;" parent="16" vertex="1">
+                    <mxGeometry x="190" y="70" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="&lt;u&gt;#KEY(CID) REF Customer(CID)&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="16" vertex="1">
+                    <mxGeometry x="10" y="110" width="190" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="&lt;b&gt;CID &lt;/b&gt;INT(NOT NULL)" style="rounded=0;whiteSpace=wrap;html=1;" parent="16" vertex="1">
+                    <mxGeometry x="160" y="30" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" value="Comments" style="swimlane;" parent="16" vertex="1" collapsed="1">
+                    <mxGeometry x="210" y="117" width="90" height="23" as="geometry">
+                        <mxRectangle x="1150" y="560" width="420" height="130" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="29" value="&lt;div&gt;-- A purchase by a customer.&lt;/div&gt;&lt;div&gt;-- (This could also be called an &quot;order&quot;, but order is a keyword in SQL.)&lt;/div&gt;&lt;div&gt;-- PID is the ID for this purchase, CID is the ID of the customer who made&amp;nbsp;&lt;/div&gt;&lt;div&gt;-- the purchase, d is the date on which the purchase was made, cNumber is&amp;nbsp;&lt;/div&gt;&lt;div&gt;-- the credit card (and card is the name of the credit card company) to&amp;nbsp;&lt;/div&gt;&lt;div&gt;-- which the purchase was billed.&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="78" vertex="1">
+                    <mxGeometry x="6" y="25" width="414" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="23" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="460" y="210"/>
+                            <mxPoint x="520" y="210"/>
+                            <mxPoint x="520" y="310"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="23" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="460" y="210"/>
+                            <mxPoint x="520" y="210"/>
+                            <mxPoint x="520" y="90"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="23" target="16" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="245" y="-80"/>
+                            <mxPoint x="1345" y="-80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="23" value="LineItem" style="swimlane;startSize=23;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="110" width="430" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="&lt;b&gt;PID&amp;nbsp;&lt;/b&gt;INT(primary)" style="rounded=0;whiteSpace=wrap;html=1;" parent="23" vertex="1">
+                    <mxGeometry x="10" y="30" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="&lt;b&gt;quantity&amp;nbsp;&lt;/b&gt;INT(NOT NULL)" style="rounded=0;whiteSpace=wrap;html=1;" parent="23" vertex="1">
+                    <mxGeometry x="250" y="30" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="&lt;u&gt;#KEY(CID) REF Customer(CID)&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="23">
+                    <mxGeometry x="10" y="70" width="190" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="&lt;b&gt;IID &lt;/b&gt;INT(primary)" style="rounded=0;whiteSpace=wrap;html=1;" parent="23" vertex="1">
+                    <mxGeometry x="140" y="30" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="&lt;u&gt;#KEY(IID) REF Item(IID)&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="23" vertex="1">
+                    <mxGeometry x="210" y="70" width="190" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" value="Comments" style="swimlane;" parent="23" vertex="1" collapsed="1">
+                    <mxGeometry x="10" y="113.5" width="90" height="23" as="geometry">
+                        <mxRectangle x="-300" y="460" width="420" height="90" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="&lt;div&gt;-- A line item on a particular purchase.&lt;/div&gt;&lt;div&gt;-- PID is the purchase ID, IID is the item that was ordered, quantity indicates&lt;/div&gt;&lt;div&gt;-- how many of it were ordered.&amp;nbsp; (For instance, a customer might order three&lt;/div&gt;&lt;div&gt;-- of the same t-shirt.)&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" parent="76" vertex="1">
+                    <mxGeometry y="30" width="420" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="33" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1065" y="310"/>
+                            <mxPoint x="1065" y="90"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="33" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="990" y="350" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1065" y="312"/>
+                            <mxPoint x="1065" y="350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="Review" style="swimlane;startSize=23;" parent="1" vertex="1">
+                    <mxGeometry x="1140" y="245" width="410" height="145" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="&lt;b&gt;CID&amp;nbsp;&lt;/b&gt;INT(primary)" style="rounded=0;whiteSpace=wrap;html=1;" parent="33" vertex="1">
+                    <mxGeometry x="10" y="30" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="&lt;b&gt;comment &lt;/b&gt;TEXT" style="rounded=0;whiteSpace=wrap;html=1;" parent="33" vertex="1">
+                    <mxGeometry x="270" y="30" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="&lt;u&gt;#KEY(CID) REF Customer(CID)&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="33" vertex="1">
+                    <mxGeometry x="3" y="70" width="190" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="&lt;b&gt;IID&amp;nbsp;&lt;/b&gt;INT(Primary)" style="rounded=0;whiteSpace=wrap;html=1;" parent="33" vertex="1">
+                    <mxGeometry x="140" y="30" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="&lt;u&gt;#KEY(IID) REF Item(IID)&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="33" vertex="1">
+                    <mxGeometry x="130" y="105" width="190" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="Comments" style="swimlane;" parent="33" vertex="1" collapsed="1">
+                    <mxGeometry x="10" y="105" width="90" height="23" as="geometry">
+                        <mxRectangle x="1090" y="540" width="420" height="100" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="39" value="&lt;div&gt;-- A customer's review of an item.&lt;/div&gt;&lt;div&gt;-- CID is the ID of the customer who gave the review, IID is ID of the item&lt;/div&gt;&lt;div&gt;-- that they reviewed, number is a numeric rating, and comment is a review&lt;/div&gt;&lt;div&gt;-- comment that they may have given along with the rating.&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="79" vertex="1">
+                    <mxGeometry y="30" width="414" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="87" value="&lt;b&gt;rating &lt;/b&gt;INT(NOT NULL)" style="rounded=0;whiteSpace=wrap;html=1;" parent="33" vertex="1">
+                    <mxGeometry x="210" y="70" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="44" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="720" y="160" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="540" y="595"/>
+                            <mxPoint x="540" y="200"/>
+                            <mxPoint x="720" y="200"/>
+                            <mxPoint x="720" y="160"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="44" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="780" y="595"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="44" target="33" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="Helpfulness" style="swimlane;startSize=23;" parent="1" vertex="1">
+                    <mxGeometry x="850" y="485" width="610" height="175" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="&lt;b&gt;reviewer&amp;nbsp;&lt;/b&gt;INT(primary)" style="rounded=0;whiteSpace=wrap;html=1;" parent="44" vertex="1">
+                    <mxGeometry x="10" y="30" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="&lt;b&gt;observer &lt;/b&gt;INT(primary)" style="rounded=0;whiteSpace=wrap;html=1;" parent="44" vertex="1">
+                    <mxGeometry x="280" y="30" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="&lt;u&gt;#KEY(reviewer)&amp;nbsp;REF Customer(CID)&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="44" vertex="1">
+                    <mxGeometry x="10" y="70" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="&lt;b&gt;IID&amp;nbsp;&lt;/b&gt;INT(Primary)" style="rounded=0;whiteSpace=wrap;html=1;" parent="44" vertex="1">
+                    <mxGeometry x="160" y="30" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="&lt;u&gt;#KEY(IID) REF Item(IID)&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="44" vertex="1">
+                    <mxGeometry x="220" y="70" width="190" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="&lt;u&gt;#KEY(observer)&amp;nbsp;REF Customer(CID)&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="44" vertex="1">
+                    <mxGeometry x="10" y="110" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="&lt;u&gt;#KEY(reviewer, IID)&amp;nbsp;REF Review(CID, IID)&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="44" vertex="1">
+                    <mxGeometry x="217" y="110" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="82" value="Comments" style="swimlane;" parent="44" vertex="1" collapsed="1">
+                    <mxGeometry x="10" y="145" width="90" height="23" as="geometry">
+                        <mxRectangle x="620" y="870" width="420" height="100" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="49" value="&lt;div&gt;-- A customer's review of an item.&lt;/div&gt;&lt;div&gt;-- CID is the ID of the customer who gave the review, IID is ID of the item&lt;/div&gt;&lt;div&gt;-- that they reviewed, number is a numeric rating, and comment is a review&lt;/div&gt;&lt;div&gt;-- comment that they may have given along with the rating.&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="82" vertex="1">
+                    <mxGeometry y="30" width="414" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="88" value="&lt;div style=&quot;color: rgb(212 , 212 , 212) ; background-color: rgb(30 , 30 , 30) ; font-family: &amp;#34;consolas&amp;#34; , &amp;#34;courier new&amp;#34; , monospace ; font-size: 14px ; line-height: 19px&quot;&gt;helpfulness BOOLEAN NOT NULL&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="44" vertex="1">
+                    <mxGeometry x="430" y="40" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" value="Comments" style="swimlane;" parent="1" vertex="1" collapsed="1">
+                    <mxGeometry x="580" y="350" width="90" height="23" as="geometry">
+                        <mxRectangle x="-200" y="440" width="420" height="130" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="30" value="&lt;div&gt;-- A customer.&lt;/div&gt;&lt;div&gt;-- CID is the customer's ID, email is their email address, lastName and&lt;/div&gt;&lt;div&gt;-- firstName make up their name, and title is the title by which they prefer&lt;/div&gt;&lt;div&gt;-- to be addressed, e.g., 'Ms', 'Dr.'.&amp;nbsp; It may or may not include punctuation,&lt;/div&gt;&lt;div&gt;-- and could be any string the customer wishes -- it need not be a standard&amp;nbsp;&lt;/div&gt;&lt;div&gt;-- title.&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" parent="75" vertex="1">
+                    <mxGeometry y="30" width="410" height="90" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

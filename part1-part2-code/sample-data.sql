@@ -2,45 +2,19 @@
 
 -- Item(IID, category, description, price)
 INSERT INTO Item VALUES 
-(1, 'Book', 'Cloud Atlas', 21.00),
-(2, 'Book', 'A Thousand Splendid Suns', 14.00),
-(3, 'Book', 'Homegoing', 22.00),
-(4, 'Book', 'Trickster', 18.00),
-(5, 'Toy', 'Lego Hogwarts School of Witchcraft and Wizardry', 99.00);
+(1, 'Book', 'sdqdqdqdq', 5.0);
 
 -- Customer(CID, email, lastName, firstName, title)
 INSERT INTO Customer VALUES
-(1599, 'g@g.com', 'Granger', 'Hermione', 'Ms'),
-(1518, 'p@p.com', 'Potter', 'Harry', 'Mr'),
-(1515, 'w@w.com', 'Weasley', 'Ron', 'Master'),
-(1500, NULL, 'Dumbledor', 'Albus', 'Professor');
+(1, 'customerA@email.com', 'Tomer', 'Cousin', NULL),
+(2, 'customerB@email.com', 'Tomer', 'Cas', NULL);
       
 -- Purchase(PID, CID, d, cNumber, card)
 INSERT INTO Purchase VALUES
-(100, 1515, '2019-11-01', 12345, 'Amex'),
-(101, 1500, '2019-11-01', 64210, 'Visa'),
-(102, 1518, '2021-01-01', 99999, 'Mastercard');
+(1, 1, '2021-11-07 00:59:27.967040-05:00', 12345, 'Amex'),
+(2, 2, '2020-02-05', 56789, 'Mastercard');
 
 -- LineItem(PID, IID, quantity)
 INSERT INTO LineItem VALUES
-(100, 4, 1),
-(100, 1, 2),
-(100, 5, 1),
-(101, 2, 4),
-(102, 3, 10);
-
--- Review(CID, IID, rating, comment)
-INSERT INTO Review VALUES
-(1515, 4, 5, 'Fantastic read!'),
-(1518, 4, 5, 'Ron said it was fantastic and he was right!!!');
-
--- Helpfulness(reviewer, IID, observer, helpfulness)
-INSERT INTO Helpfulness VALUES
-(1515, 4, 1599, False),
-(1515, 4, 1518, True),
-(1515, 4, 1515, True),
-(1515, 4, 1500, True),
-(1518, 4, 1599, True),
-(1518, 4, 1515, True),
-(1518, 4, 1500, False);
-
+(1, 1, 20),
+(2, 1, 15);
